@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-port = 8006
+port = 8001
 log_mail_subj = 'nmdev log'
 log_mail_to = ['*@*.ru']
 log_mail_host = '*'
