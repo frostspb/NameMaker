@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+{% block maker_app_cont %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Введите данные</div>
+            <div class="panel-body">
+                <form action="/" method="POST">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="col_w_l" style="width: 133px;">Кол-во  столбцов</span>
+                        <input type="number" class="form-control" placeholder="Кол-во  столбцов"
+                               aria-describedby="basic-addon1" value="{{w}}" name="col_count">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="col_h_l" style="width: 133px;">Кол-во  строк   </span>
+                        <input type="number" class="form-control" placeholder="Кол-во  строк"
+                               aria-describedby="basic-addon1" value="{{h}}" name="row_count">
+                    </div>
+                    <br>
+                    <input type="submit" class="btn" value="Далее">
+                </form>
+            </div>
+    </div>
+{% end %}

@@ -1,0 +1,27 @@
+
+{% extends "base/base.html" %}
+{% block maker_app_cont %}
+
+    {% if arg %}
+        <table class="table table-striped">
+            {% for x in arg %}
+        <tr style="padding: 2px">
+                 {% for y in x %}
+        <td style="padding: 2px">
+                 {{y}}
+        </td>
+                {% end %}
+        </tr>
+            {% end %}
+
+        </table>
+    {% else %}
+        <div class="panel panel-default">
+            <div class="panel-heading">Ошибка</div>
+            <div class="panel-body">
+                Ничего не вышло.
+            </div>
+        </div>
+    {% end %}
+
+{% end %}

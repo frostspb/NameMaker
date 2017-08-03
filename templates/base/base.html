@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--meta name="format-detection" content="telephone=no"-->
+    <title>NameMaker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ static_url('images/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ static_url('images/favicon.ico') }}" type="image/x-icon">
+    <link href="{{ static_url('style.css') }}" rel="stylesheet">
+    <script src="{{ static_url('scripts.js') }}"></script>
+
+
+    <link href="{{ static_url('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <script src="{{ static_url('jquery/jquery-3.2.1.min.js') }}"></script>
+
+    <script src="{{ static_url('bootstrap/js/bootstrap.min.js') }}"></script>
+
+
+    {% block include %}
+    {% end %}
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="app_bg">
+
+        <div class="main_content">
+
+            <div class="app_main">
+                {% block navbar_header %}
+
+                <div class="navbar navbar navbar-fixed-top" style="height: 60px">
+                    <div class="navbar-inner">
+
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="container">
+                                <a class="navbar-brand" href="#">
+                                    <!-- <b><span style = "color:  #78CA61">LoginPage </span><span style = "color:  #929292"> ASR </span><span style = "color:  #ffffff"> 2.1 </span></b> -->
+                                    <img class="img-responsive" style="margin-top: -12px;"
+                                         src="{{ static_url('images/logo_cust11.png') }}">
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                {% end %}
+                <div class="controls_bar">
+                    <div class="container">
+                        <div class="base_cont ">
+
+
+                            <div class="row justify-content-md-center">
+                                <div class="col col-lg-1">
+
+
+                                </div>
+                                <div class="col-12 col-md-auto">
+                                    {% block maker_app_cont %}
+                                    {% end %}
+                                </div>
+                                <div class="col col-lg-1">
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            {% block navbar_footer %}
+            <div class="navbar-fixed-bottom">
+
+
+                <br>
+                <ul class="nav">
+                    <li class="text-center active foot_txt">{% block hotline %} (c) Oleg Abbakumov {% end %}</li>
+                </ul>
+            </div>
+
+
+            {% end %}
+
+        </div>
+    </div>
+</div>
+{% if 'err_log' in globals() %}
+<input type="hidden" id="err_log" value="{{ err_log }}">
+<script language="JavaScript">
+
+    $(document).ready(function () {
+        var err_log = document.getElementById('err_log').value;
+        if (err_log != 'False') {
+            alert(err_log);
+        }
+    });
+</script>
+{% end %}
+</body>
+</html>
+

@@ -1,0 +1,77 @@
+{% extends "base/base.html" %}
+{% block include %}
+<script type="application/javascript">
+var rotateClockwise = function(matrix) {
+  // reverse the rows
+  //matrix = matrix.reverse();
+
+  for (var i = 0; i < matrix.length; i++) {
+    for (var j = 0; j < i; j++) {
+      var temp = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = temp;
+    }
+  }
+};
+
+
+    function collect_data_matrix() {
+        var res = [];
+        var f = document.getElementById("permmutf");
+        var divs = f.getElementsByTagName('div');
+        for (var i = 0; i < divs.length; i++) {
+            var res_row = [];
+            var inputs = divs[i].getElementsByTagName('input');
+
+            for (var j = 0; j < inputs.length; j++) {
+
+                res_row.push(inputs[j].value)
+            }
+            res.push(res_row)
+
+        }
+
+
+        var newGrid= JSON.parse(JSON.stringify(res));
+        rotateClockwise(newGrid);
+
+        console.log(JSON.stringify(newGrid));
+        document.getElementById('res_d').value = JSON.stringify(newGrid);
+        document.getElementById('push_form').submit();
+
+    }
+
+
+</script>
+{% end %}
+{% block maker_app_cont %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Введите данные</div>
+            <div class="panel-body">
+                <form action="#" method="post" id="permmutf">
+                    <br>
+                    {% for row in grid %}
+                    <div id="{{row[0]['row']}}">
+                        {% for cell in row %}
+                        <input type="text" name="{{cell['cell']}}" value="">
+                        {% end %}
+                    </div>
+                    <br>
+                    {% end %}
+
+                    <hr>
+
+                    <input type="button" class="btn" value="Генерируем!" onclick="collect_data_matrix()">
+                </form>
+
+                <form action="/permut_data" method="post" id="push_form">
+
+                    <input type="hidden" id="res_d" name="res_d">
+                </form>
+            </div>
+    </div>
+
+
+
+
+{% end %}
