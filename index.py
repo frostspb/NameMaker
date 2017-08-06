@@ -9,10 +9,10 @@ import nmlib.srv_options  # не удалять, нужна для норм па
 from urllib.parse import urlencode
 from tornado.options import options
 from nmlib.nm_urls import handlers
-from confs.srv_config import tn_settings
+from confs.app_config import tn_settings
 
 
-from confs.srv_config import CONF_FILE
+from confs.app_config import CONF_FILE
 from nmlib.base_tornado_lib.base_tor_app import NMBaseServer
 
 settings = tn_settings
@@ -29,7 +29,6 @@ class WCSenderServer(NMBaseServer):
         self.logger = tornado.log.gen_log
         tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
         tornado.options.parse_config_file(CONF_FILE)
-
 
 
 wc_sender_server = WCSenderServer(**settings)

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from nmlib.handlers.index_page.view import IndexPage, PermutHandler
-
-
+from nmlib.handlers.permut_app.permut_page import PermutHandler
+from nmlib.handlers.permut_app.start_page import StartPage
+from nmlib.handlers.permut_app.xls_export import XlsPage
 
 # урлы, которые обрабатываем (как urls.py в Django
 handlers = [
-    (r"/", IndexPage),
-
+    (r"/", StartPage),
+    (r'/xls', XlsPage),
     (r"/permut_data", PermutHandler)
 ]
 

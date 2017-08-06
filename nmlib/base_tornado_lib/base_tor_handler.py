@@ -7,11 +7,25 @@ except:
     json_util = False
 import tornado.gen
 from tornado.options import options
+import hashlib
 
 
 class NMBaseHandler(tornado.web.RequestHandler):
     def __init__(self, application, request, **kwargs):
         super(NMBaseHandler, self).__init__(application, request, **kwargs)
+        self.nm_debug = self.application.nm_debug
+        self.user_l = self.get_cookie('cur_lang', 'ru')
+
+    def get_hash_str(self, value, alg='sha224'):
+        res = None
+
+        try:
+            if isinstance(value, str):
+                res = getattr(hashlib, alg)(value.encode('utf-8')).hexdigest()
+        except:
+            pass
+
+        return res
 
     def get_req_args(self, args_list=None):
         """
@@ -41,6 +55,7 @@ class NMBaseHandler(tornado.web.RequestHandler):
 		:param grep_label: метка для грепанья
 		:return:
 		"""
+        print(msg)
         self.application.log_debug(msg, grep_label=grep_label)
 
     def log_err(self, msg, grep_label=''):

@@ -8,7 +8,7 @@ import aioredis
 from tornado.options import options
 from urllib.parse import urlencode
 from tornado.httpclient import AsyncHTTPClient
-
+from confs.app_config import DEBUG
 
 LOG_MSG_DEBUG_TMPL = ' %s %s'
 
@@ -26,6 +26,7 @@ class NMBaseServer(tornado.web.Application):
 
 
         self.logger = tornado.log.gen_log
+        self.nm_debug = options.debug
         #self.redis_host = options.red
         tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
         """

@@ -5,14 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--meta name="format-detection" content="telephone=no"-->
-    <title>NameMaker</title>
+    <title>{% block title %}NameMaker {% end %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ static_url('images/favicon.ico') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ static_url('images/favicon.ico') }}" type="image/x-icon">
+
     <link href="{{ static_url('style.css') }}" rel="stylesheet">
-    <script src="{{ static_url('scripts.js') }}"></script>
-
-
     <link href="{{ static_url('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <script src="{{ static_url('jquery/jquery-3.2.1.min.js') }}"></script>
 
@@ -20,6 +16,9 @@
 
 
     {% block include %}
+    {% end %}
+
+    {% block app_include %}
     {% end %}
 </head>
 
@@ -92,7 +91,7 @@
 
                 <br>
                 <ul class="nav">
-                    <li class="text-center active foot_txt">{% block hotline %} (c) Oleg Abbakumov {% end %}</li>
+                    <li class="text-center active foot_txt">{% block hotline %}  {% end %}</li>
                 </ul>
             </div>
 

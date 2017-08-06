@@ -1,13 +1,32 @@
 
-{% extends "base/base.html" %}
-{% block maker_app_cont %}
+{% extends "base/base_app.html" %}
+{% block app_include %}
+<script language="JavaScript">
+    function to_exc() {
+       document.getElementById('xls_f').submit()
 
-    {% if arg %}
-        <table class="table table-striped">
-            {% for x in arg %}
+
+
+    }
+</script>
+
+{% end %}
+
+{% block panel_title %} {{ loc['res_t'] }}{% end %}
+{% block panel_body %}
+
+    {% if rn_data['arg'] %}
+        <div class="alert alert-success" role="alert">{{ loc['loaded'] }}: {{rn_data['rec_show_count']}} {{ loc['from'] }} {{rn_data['rec_count_fmt']}}
+            <a href="#" class="btn btn-success pull-right" style="margin-top: -7px" onclick="to_exc()"> Excel</a></div>
+
+    <form method="get" action="{{ static_url('names.xlsx') }}">
+       <button type="submit">Download!</button>
+    </form>
+    <table class="table table-striped">
+            {% for x in rn_data['arg'] %}
         <tr style="padding: 2px">
                  {% for y in x %}
-        <td style="padding: 2px">
+        <td style="padding: 2px; width: 12px;!important;">
                  {{y}}
         </td>
                 {% end %}
@@ -16,12 +35,16 @@
 
         </table>
     {% else %}
-        <div class="panel panel-default">
-            <div class="panel-heading">Ошибка</div>
-            <div class="panel-body">
-                Ничего не вышло.
-            </div>
-        </div>
+        <div class="alert alert-danger" role="alert">{{ loc['err_msg'] }}</div>
+
     {% end %}
+
+    <form action="/permut_data"  method="post" id="xls_f">
+        <input type="hidden" id="res_d" name="res_d" value="{{str_matrix}}">
+        <input type="hidden" id="to_excel" name="to_excel" value="1">
+
+
+    </form>
+
 
 {% end %}
