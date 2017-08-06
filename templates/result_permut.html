@@ -17,11 +17,11 @@
 
     {% if rn_data['arg'] %}
         <div class="alert alert-success" role="alert">{{ loc['loaded'] }}: {{rn_data['rec_show_count']}} {{ loc['from'] }} {{rn_data['rec_count_fmt']}}
-            <a href="#" class="btn btn-success pull-right" style="margin-top: -7px" onclick="to_exc()"> Excel</a></div>
+            <a href="#" class="btn btn-success pull-right" style="margin-top: -7px" onclick="alert('В разработке / Under consruction')"> Excel</a></div>
 
-    <form method="get" action="{{ static_url('names.xlsx') }}">
+    <!--form method="get" action="{{ static_url('names.xlsx') }}">
        <button type="submit">Download!</button>
-    </form>
+    </form -->
     <table class="table table-striped">
             {% for x in rn_data['arg'] %}
         <tr style="padding: 2px">

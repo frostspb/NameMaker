@@ -57,7 +57,7 @@ class PermutHandler(NMBaseHandler):
         self.executor = ThreadPoolExecutor(max_workers=os.cpu_count())
 
     def get(self):
-        str_matrix = self.get_argument('res_d')
+        str_matrix = self.get_argument('res_d', False)
         self.render('calc_timer.html', src_str=str_matrix, msg=loc_dict[self.user_l][WAITE_MSG], user_l=self.user_l)
 
     def get_format_data(self, str_matrix):
