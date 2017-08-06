@@ -110,10 +110,16 @@ function switch_lang() {
 
     var cur_lang = getCookie('cur_lang');
     if (cur_lang == 'ru') {
+
         cur_lang = 'en'
     }
-    else {
+    else  if (cur_lang == 'en') {
+
         cur_lang = 'ru'
+    }
+    else {
+
+        cur_lang = 'en'
     }
 
     setCookie('cur_lang', cur_lang);
