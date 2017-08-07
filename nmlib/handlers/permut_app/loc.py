@@ -32,7 +32,7 @@ loc_dict = {
         NEXT_BTN: 'Далее',
         GEN_BTN: 'Генерируем!',
         P_TITLE: 'Введите данные',
-        ERR_D_MSG: 'ячейка по адресу Строка {0} Столбец {1} не заполнена',
+        ERR_D_MSG: 'Заполнены не все ячейки',
     },
 
     'en': {
@@ -50,7 +50,7 @@ loc_dict = {
         NEXT_BTN: 'Next',
         GEN_BTN: 'Generate',
         P_TITLE: 'Input data',
-        ERR_D_MSG: 'Cell at String {0} Column {1} is not filled',
+        ERR_D_MSG: 'Some cells is not filled',
     },
 
 }

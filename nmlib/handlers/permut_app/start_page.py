@@ -2,7 +2,7 @@
 from nmlib.base_grid_view import GridPage
 
 
-from nmlib.handlers.permut_app.loc import loc_dict, ERR_MSG
+from nmlib.handlers.permut_app.loc import loc_dict, ERR_MSG,  ERR_D_MSG
 
 
 class StartPage(GridPage):
@@ -13,7 +13,9 @@ class StartPage(GridPage):
     def get(self):
         input_grid = self.get_grid_list()
         self.render('index.html', h=self.grid_row_count, w=self.grid_col_count, loc=loc_dict[self.user_l],
-                    user_l=self.user_l, err_msg=loc_dict[self.user_l][ERR_MSG], grid=input_grid)
+                    user_l=self.user_l, err_msg=loc_dict[self.user_l][ERR_MSG],
+                    err_d_msg=loc_dict[self.user_l][ERR_D_MSG],
+                    grid=input_grid)
 
     def post(self):
 
@@ -27,5 +29,5 @@ class StartPage(GridPage):
 
         self.render('index.html', h=self.grid_row_count, w=self.grid_col_count,
                     grid=input_grid, loc=loc_dict[self.user_l], user_l=self.user_l,
-                    err_msg=loc_dict[self.user_l][ERR_MSG])
+                    err_msg=loc_dict[self.user_l][ERR_MSG],err_d_msg=loc_dict[self.user_l][ERR_D_MSG],)
 

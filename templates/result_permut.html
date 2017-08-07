@@ -1,22 +1,6 @@
 
 {% extends "base/base_app.html" %}
-{% block app_include %}
-<script language="JavaScript">
-    function to_exc(event) {
-		str_matrix =  document.getElementById('res_d').value;
-		$.post('/permut_data', {
-            res_d: str_matrix,
-			to_excel:1
-		}).done(function(data) {
-            document.getElementById('down_lnk').href = data;
-            document.getElementById('down_lnk').click();
-		}).fail(function() {
-			alert('Service temporary unavailable, Please, try again later');
-		});
-    }
-</script>
 
-{% end %}
 
 {% block panel_title %} {{ loc['res_t'] }}{% end %}
 {% block add_cntrls %}
@@ -27,11 +11,9 @@
 
     {% if rn_data['arg'] %}
         <div class="alert alert-success" role="alert">{{ loc['loaded'] }}: {{rn_data['rec_show_count']}} {{ loc['from'] }} {{rn_data['rec_count_fmt']}}
-            <a href="#" class="btn btn-success pull-right" style="margin-top: -7px" onclick="to_exc(1)"> Excel</a></div>
+            <a href="#" class="btn btn-success pull-right" style="margin-top: -7px" onclick="to_exc()"> Excel</a></div>
 
-    <!--form method="get" action="{{ static_url('names.xlsx') }}">
-       <button type="submit">Download!</button>
-    </form -->
+
    <a href="/static/names.xlsx" style="display: None" id="down_lnk"></a>
     <table class="table table-striped">
             {% for x in rn_data['arg'] %}
@@ -50,7 +32,7 @@
 
     {% end %}
 
-    <form action="/permut_data"  method="post" id="xls_f">
+    <form action="#"  method="post" id="xls_f">
         <input type="hidden" id="res_d" name="res_d" value="{{str_matrix}}">
         <input type="hidden" id="to_excel" name="to_excel" value="1">
 

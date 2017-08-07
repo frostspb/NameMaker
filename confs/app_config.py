@@ -8,7 +8,7 @@ tn_settings = {
     "login_url": "/login",
 }
 
-DEBUG = True
+DEBUG = False
 
 DEV_SRV = ['scy-core-l']
 
@@ -20,8 +20,8 @@ REDIS_PORT = 6379
 REDIS_MIN_CON = 50 if srv in DEV_SRV else 300
 REDIS_MAX_CON = 100 if srv in DEV_SRV else 700
 
-MAX_GEN_RECORDS = 10000
-MAX_EXC_RECORDS = 1000000
+MAX_GEN_RECORDS = 100000
+MAX_EXC_RECORDS = 100000
 
 MAX_GRID_W = 20
 MAX_GRID_H = 100

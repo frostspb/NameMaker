@@ -41,24 +41,29 @@ function collect_data_matrix(err_tmpl) {
     var f = document.getElementById("permut_tb");
     var rows_count = f.rows.length;
     for (var i = 0; i < rows_count; i++) {
-        var res_row = [];
-        var cell_count = f.rows[i].cells.length;
 
-        for (var j = 0; j < cell_count; j++) {
-            var v = f.rows[i].cells[j].getElementsByTagName('input')[0].value;
-            if (v == '') {
-                "{0}{1}".format("{1}", "{0}")
+            var res_row = [];
+            var cell_count = f.rows[i].cells.length;
 
-                var s2 = "My name: {0}, age: {1}!".f(i, j);
-                alert(err_tmpl.f(i, j));
-                valid_flag = false;
+            for (var j = 0; j < cell_count; j++) {
+
+                    var v = f.rows[i].cells[j].getElementsByTagName('input')[0].value;
+
+
+                    if (v == '') {
+
+                        //alert(String(err_tmpl).f(i, j));
+
+                        valid_flag = false;
+                    }
+                    else {
+                        res_row.push(v)
+                    }
+
+
             }
-            else {
-                res_row.push(v)
-            }
+            res.push(res_row)
 
-        }
-        res.push(res_row)
     }
 
     if (valid_flag) {
@@ -67,6 +72,9 @@ function collect_data_matrix(err_tmpl) {
         document.getElementById('h_tbl').value = document.getElementById('row_count').value;
         document.getElementById('w_tbl').value = document.getElementById('col_count').value;
         document.getElementById('push_form').submit();
+    }
+    else {
+        alert(err_tmpl);
     }
 
 }
@@ -129,7 +137,18 @@ function switch_lang() {
 }
 
 
-
+    function to_exc() {
+		str_matrix =  document.getElementById('res_d').value;
+		$.post('/permut_data', {
+            res_d: str_matrix,
+			to_excel:1
+		}).done(function(data) {
+            document.getElementById('down_lnk').href = data;
+            document.getElementById('down_lnk').click();
+		}).fail(function() {
+			alert('Service temporary unavailable, Please, try again later');
+		});
+    }
 
 
 

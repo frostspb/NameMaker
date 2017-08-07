@@ -55,7 +55,7 @@ class NMBaseHandler(tornado.web.RequestHandler):
 		:param grep_label: метка для грепанья
 		:return:
 		"""
-        print(msg)
+        
         self.application.log_debug(msg, grep_label=grep_label)
 
     def log_err(self, msg, grep_label=''):

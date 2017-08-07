@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-sm-1">
                                 {% block add_cntrls %}
-                                    <input type="button" class="btn" value="{{ loc['gen_btn'] }}" onclick="collect_data_matrix('{{err_msg}}')">
+                                    <input type="button" class="btn" value="{{ loc['gen_btn'] }}" onclick="collect_data_matrix('{{err_d_msg}}')">
                                 {% end %}
                                 </div>
                                 <br>
@@ -58,12 +58,11 @@
                     <br>
                 {% end %}
 
-            {% block pnl_cont  %}
+                {% block pnl_cont  %}
 
 
-            {%  end %}
-        {% end %}
-
+                {%  end %}
+            {% end %}
         </div>
     </div>
 {% end %}
