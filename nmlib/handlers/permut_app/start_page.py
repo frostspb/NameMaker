@@ -2,45 +2,7 @@
 from nmlib.base_grid_view import GridPage
 
 
-ERR_MSG = 'err_msg'
-INPUT_PAR = 'input_par'
-COL_COUNT = 'col_count'
-ROW_COUNT = 'row_count'
-REC_COUNT = 'rec_count'
-NEXT_BTN = 'next'
-
-GEN_BTN = 'gen_btn'
-P_TITLE = 'p_tilte'
-ERR_D_MSG = 'err_d_msg'
-
-
-loc_dict = {
-    'ru': {
-        ERR_MSG: 'Проверьте данные',
-        INPUT_PAR: 'Введите параметры',
-        COL_COUNT: 'Кол-во  столбцов',
-        ROW_COUNT: 'Кол-во  строк',
-        REC_COUNT: 'Кол-во записей',
-        NEXT_BTN: 'Далее',
-        GEN_BTN: 'Генерируем!',
-        P_TITLE: 'Введите данные',
-        ERR_D_MSG: 'ячейка по адресу Строка {0} Столбец {1} не заполнена',
-    },
-
-    'en': {
-        ERR_MSG: 'Check parameters!',
-        INPUT_PAR: 'Enter the parameters',
-        COL_COUNT: 'Rows count',
-        ROW_COUNT: 'Cols count',
-        REC_COUNT: 'Records count',
-        NEXT_BTN: 'Next',
-        GEN_BTN: 'Generate',
-        P_TITLE: 'Input data',
-        ERR_D_MSG: 'Cell at String {0} Column {1} is not filled',
-    },
-
-
-}
+from nmlib.handlers.permut_app.loc import loc_dict, ERR_MSG
 
 
 class StartPage(GridPage):

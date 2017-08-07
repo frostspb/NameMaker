@@ -2,64 +2,32 @@
 {% block app_include %}{% end %}
 
 {% block panel_title %} {{ loc['input_par'] }} {% end %}
-{% block panel_body %}
-    <div class="row">
 
-    <form action="/" method="POST" id="grid_param_f">
-        <div class="col-lg-12">
-            <div class=" col-sm-1">
-                <div class="input-group">
-                    <span class="input-group-addon" id="col_h_l" style="width: 50px;">H</span>
-                    <input type="number" class="form-control" placeholder="H"
-                           aria-describedby="basic-addon1" value="{{h}}" name="row_count" id="row_count"
-                           style="width: 42px;">
-                </div>
-            </div>
-            <div class=" col-sm-1">
-                <div class="input-group">
-                    <span class="input-group-addon" id="col_w_l" style="width: 50px;">W</span>
-                    <input type="number" class="form-control" placeholder="W"
-                           aria-describedby="basic-addon1" value="{{w}}" id="col_count" name="col_count"
-                           style="width: 42px;">
-                </div>
-            </div>
+{% block pnl_cont  %}
 
-            <div class="col-sm-1">
-                <input type="button" class="btn" value="OK" onclick="valid_grid_param('{{ err_msg }}')"
-                style="width: 44px;margin-left: 5px;">
-            </div>
-            <div class="col-sm-1">
-            <input type="button" class="btn" value="{{ loc['gen_btn'] }}" onclick="collect_data_matrix('{{err_msg}}')">
-            </div>
-            <br>
-        </div>
-    </form>
-</div>
-    <br>
     <div class="row">
         <form action="#" id="permmutf">
+            <table id="permut_tb" class="table table-striped">
+                {% for row in grid %}
+                    <tr id="{{row[0]['row']}}" style="padding: 2px">
+                        {% for cell in row %}
+                            <td style="padding: 2px">
+                                <input type="text" name="{{cell['cell']}}" value="{{cell['value']}}" style="width: 50px; border: None">
+                            </td>
+                        {% end %}
+                    </tr>
 
+                {% end %}
 
+            </table>
+        </form>
 
-        <table id="permut_tb" class="table table-striped">
-            {% for row in grid %}
-                <tr id="{{row[0]['row']}}" style="padding: 2px">
-                    {% for cell in row %}
-                        <td style="padding: 2px">
-                            <input type="text" name="{{cell['cell']}}" value="{{cell['value']}}" style="width: 50px; border: None">
-                        </td>
-                    {% end %}
-                </tr>
+        <form action="/permut_data" method="get" id="push_form">
 
-            {%end%}
-
-        </table>
-    </form>
-
-    <form action="/permut_data" method="get" id="push_form">
-
-        <input type="hidden" id="res_d" name="res_d">
-    </form>
+            <input type="hidden" id="res_d" name="res_d">
+            <input type="hidden" id="h_tbl" name="h_tbl">
+            <input type="hidden" id="w_tbl" name="w_tbl">
+        </form>
     </div>
 
 {% end %}

@@ -64,6 +64,8 @@ function collect_data_matrix(err_tmpl) {
     if (valid_flag) {
         var newGrid = JSON.parse(JSON.stringify(res));
         document.getElementById('res_d').value = JSON.stringify(newGrid);
+        document.getElementById('h_tbl').value = document.getElementById('row_count').value;
+        document.getElementById('w_tbl').value = document.getElementById('col_count').value;
         document.getElementById('push_form').submit();
     }
 
@@ -125,5 +127,9 @@ function switch_lang() {
     setCookie('cur_lang', cur_lang);
     window.location.reload()
 }
+
+
+
+
 
 

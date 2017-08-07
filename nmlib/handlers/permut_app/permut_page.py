@@ -13,38 +13,11 @@ from tornado.concurrent import run_on_executor
 from nmlib.handlers.permut_app.nm_utils import get_data_permut
 
 import functools, itertools, operator
-from confs.app_config import DEFAULT_RECORDS_COUNT
+from confs.app_config import DEFAULT_RECORDS_COUNT, MAX_EXC_RECORDS
 
 from nmlib.handlers.permut_app.nm_utils import get_fmt_count
+from nmlib.handlers.permut_app.loc import loc_dict, WAITE_MSG, ERR_MSG
 
-WAITE_MSG = 'wait_msg'
-LOADED_C = 'loaded'
-RES_T = 'res_t'
-FROM_T = 'from'
-ECL_EXP = 'xls_exp'
-ERR_MSG = 'err_msg'
-
-loc_dict = {
-    'ru': {
-
-        WAITE_MSG: 'Идёт обработка данных. Пожалуйста, подождите...',
-        LOADED_C: 'Загружено',
-        RES_T: 'Результат',
-        FROM_T: 'из',
-        ECL_EXP:  'Экспорт в эксел',
-        ERR_MSG: 'Ничего не вышло',
-    },
-
-    'en': {
-        WAITE_MSG: 'Data processing is in progress. Please wait...',
-        LOADED_C: 'Displayed',
-        RES_T: 'Result',
-        FROM_T: 'from',
-        ECL_EXP:  'Export to Excel',
-        ERR_MSG: 'Nothing to see',
-    },
-
-}
 
 
 class PermutHandler(NMBaseHandler):
@@ -58,7 +31,10 @@ class PermutHandler(NMBaseHandler):
 
     def get(self):
         str_matrix = self.get_argument('res_d', False)
-        self.render('calc_timer.html', src_str=str_matrix, msg=loc_dict[self.user_l][WAITE_MSG], user_l=self.user_l)
+        h = self.get_argument('h_tbl', False)
+        w = self.get_argument('w_tbl', False)
+        self.render('calc_timer.html', src_str=str_matrix, msg=loc_dict[self.user_l][WAITE_MSG], user_l=self.user_l,
+                    h=h, w=w, err_msg=loc_dict[self.user_l][ERR_MSG],)
 
     def get_format_data(self, str_matrix):
         #TODO TRY
@@ -92,6 +68,8 @@ class PermutHandler(NMBaseHandler):
         
         str_matrix = self.get_argument('res_d', False)
         to_excel = self.get_argument('to_excel', False)
+        h = self.get_argument('h_tbl', False)
+        w = self.get_argument('w_tbl', False)
 
         # hash_str = self.get_hash_str(str_matrix)
         self.fmt_data = self.get_format_data(str_matrix)
@@ -99,8 +77,11 @@ class PermutHandler(NMBaseHandler):
 
         self.count_combinations = len_t
         self.log_debug('len grid = %s' % self.count_combinations)
-
-        permut_result = self.get_permut_data(self.fmt_data, 1000)
+        if to_excel:
+            count_r = MAX_EXC_RECORDS
+        else:
+            count_r = DEFAULT_RECORDS_COUNT
+        permut_result = self.get_permut_data(self.fmt_data, count_r)
 
         self.log_debug('len grid = %s' % self.count_combinations)
         # permut_result=permut_result1
@@ -114,13 +95,13 @@ class PermutHandler(NMBaseHandler):
                      }
         if to_excel:
             self.export_to_xls(permut_result).result()
-            self.write('1111')
+            self.write(self.static_url('names.xlsx'))
             self.finish()
 
         else:
 
             self.render('result_permut.html', rn_data=rndr_dict, loc=loc_dict[self.user_l], user_l=self.user_l,
-                    str_matrix=str_matrix)
+                    str_matrix=str_matrix, h=h, w=w, err_msg=loc_dict[self.user_l][ERR_MSG],)
 
 
 

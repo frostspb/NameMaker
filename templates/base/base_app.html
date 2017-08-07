@@ -18,7 +18,52 @@
         </div>
         <div class="panel-body">
             {% block panel_body %}
-            {% end %}
+
+                {% block tbl_params %}
+
+                    <div class="row">
+
+                        <form action="/" method="POST" id="grid_param_f">
+                            <div class="col-lg-12">
+                                <div class=" col-sm-1">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="col_h_l" style="width: 50px;">H</span>
+                                        <input type="number" class="form-control" placeholder="H"
+                                               aria-describedby="basic-addon1" value="{{h}}" name="row_count" id="row_count"
+                                               style="width: 42px;">
+                                    </div>
+                                </div>
+                                <div class=" col-sm-1">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="col_w_l" style="width: 50px;">W</span>
+                                        <input type="number" class="form-control" placeholder="W"
+                                               aria-describedby="basic-addon1" value="{{w}}" id="col_count" name="col_count"
+                                               style="width: 42px;">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <input type="button" class="btn" value="OK" onclick="valid_grid_param('{{ err_msg }}')"
+                                    style="width: 44px;margin-left: 5px;">
+                                </div>
+                                <div class="col-sm-1">
+                                {% block add_cntrls %}
+                                    <input type="button" class="btn" value="{{ loc['gen_btn'] }}" onclick="collect_data_matrix('{{err_msg}}')">
+                                {% end %}
+                                </div>
+                                <br>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                {% end %}
+
+            {% block pnl_cont  %}
+
+
+            {%  end %}
+        {% end %}
+
         </div>
     </div>
 {% end %}
