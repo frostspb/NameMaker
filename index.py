@@ -29,6 +29,7 @@ class WCSenderServer(NMBaseServer):
         self.logger = tornado.log.gen_log
         tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
         tornado.options.parse_config_file(CONF_FILE)
+        self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 wc_sender_server = WCSenderServer(**settings)

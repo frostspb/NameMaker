@@ -31,4 +31,5 @@ import xlsxwriter
 # Iterate over the data and write it out row by row.
 
 
-
+import os
+print ((os.path.dirname(os.path.abspath(__file__))))

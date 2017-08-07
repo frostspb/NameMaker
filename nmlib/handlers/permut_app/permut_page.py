@@ -53,7 +53,9 @@ class PermutHandler(NMBaseHandler):
         :param path: путь до файла
         :return: содержимое файла
         """
-        workbook = xlsxwriter.Workbook('static/names.xlsx')
+        base_dir = self.application.base_dir
+        static_root = os.path.join(base_dir, "static")
+        workbook = xlsxwriter.Workbook(os.path.join(static_root, 'names.xlsx'))
         worksheet = workbook.add_worksheet()
         row = 0
         for r in data_source:
