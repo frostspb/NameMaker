@@ -22,7 +22,7 @@ tornado.options.parse_config_file(CONF_FILE)
 tornado.options.parse_command_line()
 
 
-class WCSenderServer(NMBaseServer):
+class NameGenServer(NMBaseServer):
     def __init__(self, **settings):
         super().__init__(handlers, root_dir=os.path.dirname(__file__), **settings)
         self.logger = tornado.log.gen_log
@@ -31,11 +31,8 @@ class WCSenderServer(NMBaseServer):
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
 
-wc_sender_server = WCSenderServer(**settings)
+name_maker = NameGenServer(**settings)
 
 if __name__ == "__main__":
-    wc_sender_server.listen(options.port)
-    loop = asyncio.get_event_loop()
-    wc_sender_server.init_with_loop(loop)
-    loop.run_forever()
+    name_maker.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
