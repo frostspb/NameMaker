@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}NameMaker {% end %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ static_url('style.css') }}" rel="stylesheet">
+
     <link href="{{ static_url('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <script src="{{ static_url('jquery/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ static_url('bootstrap/js/bootstrap.min.js') }}"></script>
-
+    <link href="{{ static_url('style.css') }}" rel="stylesheet">
     {% block include %}
     {% end %}
 
@@ -25,7 +25,7 @@
             <div class="app_main">
                 {% block navbar_header %}
                     <div class="navbar navbar navbar-inverse navbar-fixed-top cust_footer" >
-                        
+
                     </div>
                 {% end %}
                 <div class="controls_bar">
