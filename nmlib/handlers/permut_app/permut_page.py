@@ -60,8 +60,8 @@ class PermutHandler(NMBaseHandler):
         static_root = os.path.join(base_dir, "static")
         t = int(time.mktime(datetime.now().timetuple()))
         fname = self.fname_tmp % str(t)
-
-        workbook = xlsxwriter.Workbook(os.path.join(static_root, fname))
+        f_path = os.path.join(static_root, fname)
+        workbook = xlsxwriter.Workbook(f_path)
         worksheet = workbook.add_worksheet()
         row = 0
         for r in data_source:
@@ -71,6 +71,7 @@ class PermutHandler(NMBaseHandler):
                 col += 1
             row += 1
         workbook.close()
+        return f_path
 
     def post(self):
         
@@ -102,8 +103,8 @@ class PermutHandler(NMBaseHandler):
             'rec_show_count': get_fmt_count(displayed),
                      }
         if to_excel:
-            self.export_to_xls(permut_result).result()
-            self.write(self.static_url('names.xlsx'))
+            f_path = self.export_to_xls(permut_result).result()
+            self.write(f_path)
             self.finish()
 
         else:
