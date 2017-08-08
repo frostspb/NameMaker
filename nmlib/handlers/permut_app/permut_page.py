@@ -71,7 +71,7 @@ class PermutHandler(NMBaseHandler):
                 col += 1
             row += 1
         workbook.close()
-        return f_path
+        return fname
 
     def post(self):
         
@@ -103,8 +103,8 @@ class PermutHandler(NMBaseHandler):
             'rec_show_count': get_fmt_count(displayed),
                      }
         if to_excel:
-            f_path = self.export_to_xls(permut_result).result()
-            self.write(f_path)
+            fname = self.export_to_xls(permut_result).result()
+            self.write(self.static_url(fname))
             self.finish()
 
         else:
