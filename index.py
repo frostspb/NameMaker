@@ -26,7 +26,7 @@ class NameGenServer(NMBaseServer):
     def __init__(self, **settings):
         super().__init__(handlers, root_dir=os.path.dirname(__file__), **settings)
         self.logger = tornado.log.gen_log
-        tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
+        #tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
         tornado.options.parse_config_file(CONF_FILE)
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 

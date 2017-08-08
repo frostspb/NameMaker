@@ -28,7 +28,7 @@ class NMBaseServer(tornado.web.Application):
         self.logger = tornado.log.gen_log
         self.nm_debug = False#options.debug
         #self.redis_host = options.red
-        tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
+        #tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
 
 
     def get_log_msg(self, msg, grep_label=''):
