@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
-import hashlib
-from nmlib.base_grid_view import GridPage
-from nmlib.base_tornado_lib.base_tor_handler import NMBaseHandler
-import json
-import itertools
+
+
+
 import os
 import xlsxwriter
-
-from nmlib.handlers.permut_app.nm_utils import iter_all_strings
+import time
+from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 from tornado.concurrent import run_on_executor
-
+from nmlib.base_grid_view import GridPage
 
 class XlsPage(GridPage):
     def __init__(self, application, request, **kwargs):
 
         super().__init__(application, request, **kwargs)
         self.executor = ThreadPoolExecutor(max_workers=os.cpu_count())
+        self.fname_tmp = 'names_%s.xlsx'
 
     @run_on_executor
     def export_to_xls(self, data_source):
@@ -25,7 +24,9 @@ class XlsPage(GridPage):
         :param path: путь до файла
         :return: содержимое файла
         """
-        workbook = xlsxwriter.Workbook('static/names.xlsx')
+        t = int(time.mktime(datetime.now().timetuple()))
+        fname = self.fname_tmp % str(t)
+        workbook = xlsxwriter.Workbook('static/' + fname)
         worksheet = workbook.add_worksheet()
         row = 0
         for r in data_source:
