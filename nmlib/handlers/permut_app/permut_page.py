@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-import hashlib
-from nmlib.base_grid_view import GridPage
+
+
 from nmlib.base_tornado_lib.base_tor_handler import NMBaseHandler
 import json
-import itertools
+
 import os
 import xlsxwriter
 from confs.app_config import MAX_GEN_RECORDS
 
 from concurrent.futures import ThreadPoolExecutor
 from tornado.concurrent import run_on_executor
-from nmlib.handlers.permut_app.nm_utils import get_data_permut
+from nmlib.handlers.permut_app.nm_utils import get_data_permut, is_empty, filter_empty
 
-import functools, itertools, operator
+import functools,  operator
 from confs.app_config import DEFAULT_RECORDS_COUNT, MAX_EXC_RECORDS
 
 from nmlib.handlers.permut_app.nm_utils import get_fmt_count
@@ -40,7 +40,8 @@ class PermutHandler(NMBaseHandler):
         #TODO TRY
         matrix = json.loads(str_matrix)
         rotated = list(zip(*matrix[::1]))
-        return rotated
+        res = [[z for z in i if z not in ['', '--']] for i in rotated]
+        return res
 
     def get_permut_data(self, src_data, count=DEFAULT_RECORDS_COUNT):
         self.count_step = count
