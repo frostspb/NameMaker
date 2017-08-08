@@ -163,7 +163,7 @@ function switch_lang() {
 
 function to_exc() {
     str_matrix = document.getElementById('res_d').value;
-    $.post('/permut_data', {
+    $.post('./permut_data', {
         res_d: str_matrix,
         to_excel: 1
     }).done(function (data) {
