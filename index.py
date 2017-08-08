@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
 
     file_cleaner = tornado.ioloop.PeriodicCallback(
-        name_maker.file_cleaner, 1000*60*60*24
+        name_maker.file_cleaner, 1000*60*60*20
     )
     file_cleaner.start()
     tornado.ioloop.IOLoop.instance().start()
