@@ -37,32 +37,56 @@ var rotateClockwise = function (matrix) {
 
 function collect_data_matrix(err_tmpl) {
     var res = [];
+    var f = document.getElementById("permut_tb");
+    var rows_count = f.rows.length;
+    for (var i = 0; i < rows_count; i++) {
+
+        var res_row = [];
+        var cell_count = f.rows[i].cells.length;
+
+        for (var j = 0; j < cell_count; j++) {
+            var v = f.rows[i].cells[j].getElementsByTagName('input')[0].value;
+            res_row.push(v)
+        }
+        res.push(res_row)
+    }
+
+    var newGrid = JSON.parse(JSON.stringify(res));
+    document.getElementById('res_d').value = JSON.stringify(newGrid);
+    document.getElementById('h_tbl').value = document.getElementById('row_count').value;
+    document.getElementById('w_tbl').value = document.getElementById('col_count').value;
+    document.getElementById('push_form').submit();
+}
+
+
+function collect_data_matrix_back(err_tmpl) {
+    var res = [];
     var valid_flag = true;
     var f = document.getElementById("permut_tb");
     var rows_count = f.rows.length;
     for (var i = 0; i < rows_count; i++) {
 
-            var res_row = [];
-            var cell_count = f.rows[i].cells.length;
+        var res_row = [];
+        var cell_count = f.rows[i].cells.length;
 
-            for (var j = 0; j < cell_count; j++) {
+        for (var j = 0; j < cell_count; j++) {
 
-                    var v = f.rows[i].cells[j].getElementsByTagName('input')[0].value;
-
-
-                    if (v == '') {
-
-                        //alert(String(err_tmpl).f(i, j));
-
-                        valid_flag = false;
-                    }
-                    else {
-                        res_row.push(v)
-                    }
+            var v = f.rows[i].cells[j].getElementsByTagName('input')[0].value;
 
 
+            if (v == '') {
+
+                //alert(String(err_tmpl).f(i, j));
+
+                valid_flag = false;
             }
-            res.push(res_row)
+            else {
+                res_row.push(v)
+            }
+
+
+        }
+        res.push(res_row)
 
     }
 
@@ -123,7 +147,7 @@ function switch_lang() {
 
         cur_lang = 'en'
     }
-    else  if (cur_lang == 'en') {
+    else if (cur_lang == 'en') {
 
         cur_lang = 'ru'
     }
@@ -137,18 +161,18 @@ function switch_lang() {
 }
 
 
-    function to_exc() {
-		str_matrix =  document.getElementById('res_d').value;
-		$.post('/permut_data', {
-            res_d: str_matrix,
-			to_excel:1
-		}).done(function(data) {
-            document.getElementById('down_lnk').href = data;
-            document.getElementById('down_lnk').click();
-		}).fail(function() {
-			alert('Service temporary unavailable, Please, try again later');
-		});
-    }
+function to_exc() {
+    str_matrix = document.getElementById('res_d').value;
+    $.post('/permut_data', {
+        res_d: str_matrix,
+        to_excel: 1
+    }).done(function (data) {
+        document.getElementById('down_lnk').href = data;
+        document.getElementById('down_lnk').click();
+    }).fail(function () {
+        alert('Service temporary unavailable, Please, try again later');
+    });
+}
 
 
 
