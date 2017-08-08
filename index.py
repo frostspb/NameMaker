@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import asyncio
+import glob, os
 import os.path
 import tornado.log
 import tornado.web
@@ -32,9 +33,11 @@ class NameGenServer(NMBaseServer):
         tornado.ioloop.IOLoop.instance().call_later(1, self.file_cleaner)
 
     def file_cleaner(self):
-        import glob, os
-        for f in glob.glob( os.path.join(self.base_dir, 'static', "*.xlsx")):
-            os.remove(f)
+        try:
+            for f in glob.glob( os.path.join(self.base_dir, 'static', "*.xlsx")):
+                os.remove(f)
+        except:
+            pass
 
 
 name_maker = NameGenServer(**settings)
