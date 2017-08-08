@@ -33,7 +33,7 @@ class NameGenServer(NMBaseServer):
 
     def file_cleaner(self):
         import glob, os
-        for f in glob.glob("static/*.xlsx"):
+        for f in glob.glob( os.path.join(self.base_dir, 'static', "*.xlsx")):
             os.remove(f)
 
 
