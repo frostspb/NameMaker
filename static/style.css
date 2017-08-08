@@ -3,7 +3,8 @@
 }
 
 .cust_footer {
-    height: 25px!important;
+    height: 25px;
+    min-height: 25px;
 }
 .loader {
             border: 16px solid #f3f3f3;
