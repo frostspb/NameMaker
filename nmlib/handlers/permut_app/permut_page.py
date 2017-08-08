@@ -7,7 +7,8 @@ import json
 import os
 import xlsxwriter
 from confs.app_config import MAX_GEN_RECORDS
-
+import time
+from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 from tornado.concurrent import run_on_executor
 from nmlib.handlers.permut_app.nm_utils import get_data_permut, is_empty, filter_empty
@@ -28,6 +29,7 @@ class PermutHandler(NMBaseHandler):
         self.count_step = DEFAULT_RECORDS_COUNT
         #self.user_l = 'ru'
         self.executor = ThreadPoolExecutor(max_workers=os.cpu_count())
+        self.fname_tmp = 'names_%s.xlsx'
 
     def get(self):
         str_matrix = self.get_argument('res_d', False)
@@ -56,7 +58,10 @@ class PermutHandler(NMBaseHandler):
         """
         base_dir = self.application.base_dir
         static_root = os.path.join(base_dir, "static")
-        workbook = xlsxwriter.Workbook(os.path.join(static_root, 'names.xlsx'))
+        t = int(time.mktime(datetime.now().timetuple()))
+        fname = self.fname_tmp % str(t)
+
+        workbook = xlsxwriter.Workbook(os.path.join(static_root, fname))
         worksheet = workbook.add_worksheet()
         row = 0
         for r in data_source:
