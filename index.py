@@ -6,7 +6,6 @@ import tornado.log
 import tornado.web
 import nmlib.srv_options  # не удалять, нужна для норм парсинга опций
 
-from urllib.parse import urlencode
 from tornado.options import options
 from nmlib.nm_urls import handlers
 from confs.app_config import tn_settings
