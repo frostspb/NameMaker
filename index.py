@@ -45,7 +45,6 @@ name_maker = NameGenServer(**settings)
 if __name__ == "__main__":
     name_maker.listen(options.port)
 
-
     file_cleaner = tornado.ioloop.PeriodicCallback(
         name_maker.file_cleaner, 1000*60*60*20
     )

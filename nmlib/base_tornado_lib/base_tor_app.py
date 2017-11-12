@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-import json
-import os.path
 
+import os.path
 import tornado.log
 import tornado.web
 
 from tornado.options import options
-from urllib.parse import urlencode
+
 
 from confs.app_config import DEBUG
 
@@ -24,12 +23,8 @@ class NMBaseServer(tornado.web.Application):
                          template_path=os.path.join(root_dir, "templates"),
                          **settings)
 
-
         self.logger = tornado.log.gen_log
-        self.nm_debug = False#options.debug
-        #self.redis_host = options.red
-        #tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
-
+        self.nm_debug = False
 
     def get_log_msg(self, msg, grep_label=''):
         """

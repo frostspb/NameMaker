@@ -5,8 +5,7 @@ from confs.app_config import MAX_GRID_H, MAX_GRID_W
 from confs.app_config import DEFAULT_GRID_H, DEFAULT_GRID_W
 from nmlib.handlers.permut_app.nm_utils import get_debug_colname_vals
 
-from string import ascii_lowercase
-import itertools
+
 NAME_CELL_TMPL = 'r%sc%s'
 NAME_ROW_TMPL = 'R%s'
 
@@ -19,7 +18,6 @@ class GridPage(NMBaseHandler):
         self.grid_col_count = DEFAULT_GRID_W
         self.cell_name_tmpl = NAME_CELL_TMPL
         self.row_name_tmpl = NAME_ROW_TMPL
-
 
     def get_cell_dict(self, col, row):
 

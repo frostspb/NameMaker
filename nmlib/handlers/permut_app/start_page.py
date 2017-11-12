@@ -23,11 +23,11 @@ class StartPage(GridPage):
             h = int(self.get_argument('row_count', self.grid_row_count))
             w = int(self.get_argument('col_count', self.grid_col_count))
             input_grid = self.get_grid_list(rows=h, cols=w)
-        except:
-            input_grid =[]
+        except Exception:
+            input_grid = []
             self.log_exc('init grid fail')
 
         self.render('index.html', h=self.grid_row_count, w=self.grid_col_count,
                     grid=input_grid, loc=loc_dict[self.user_l], user_l=self.user_l,
-                    err_msg=loc_dict[self.user_l][ERR_MSG],err_d_msg=loc_dict[self.user_l][ERR_D_MSG],)
+                    err_msg=loc_dict[self.user_l][ERR_MSG], err_d_msg=loc_dict[self.user_l][ERR_D_MSG],)
 
