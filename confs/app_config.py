@@ -15,10 +15,6 @@ DEV_SRV = ['scy-core-l']
 srv = socket.gethostname()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-REDS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_MIN_CON = 50 if srv in DEV_SRV else 300
-REDIS_MAX_CON = 100 if srv in DEV_SRV else 700
 
 MAX_GEN_RECORDS = 100000
 MAX_EXC_RECORDS = 100000

@@ -11,7 +11,8 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 from tornado.concurrent import run_on_executor
 
-from nmlib.base_tornado_lib.base_tor_handler import NMBaseHandler
+
+from nmlib.base_grid_view import GridPage
 from nmlib.handlers.permut_app.nm_utils import get_permut_result
 from nmlib.handlers.permut_app.nm_utils import get_fmt_count
 from nmlib.handlers.permut_app.loc import loc_dict, WAITE_MSG, ERR_MSG
@@ -19,7 +20,7 @@ from confs.app_config import MAX_GEN_RECORDS
 from confs.app_config import DEFAULT_RECORDS_COUNT, MAX_EXC_RECORDS
 
 
-class PermutHandler(NMBaseHandler):
+class PermutHandler(GridPage):
     def __init__(self, application, request, **kwargs):
         super().__init__(application, request, **kwargs)
         self.max_records = MAX_GEN_RECORDS
@@ -30,7 +31,6 @@ class PermutHandler(NMBaseHandler):
 
     def get(self):
         str_matrix = self.get_argument('res_d', False)
-        print(str_matrix)
         h = self.get_argument('h_tbl', False)
         w = self.get_argument('w_tbl', False)
         self.render('calc_timer.html', src_str=str_matrix, msg=loc_dict[self.user_l][WAITE_MSG], user_l=self.user_l,

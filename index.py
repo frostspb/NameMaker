@@ -13,7 +13,8 @@ from confs.app_config import tn_settings
 
 
 from confs.app_config import CONF_FILE
-from nmlib.base_tornado_lib.base_tor_app import NMBaseServer
+from torskel.torskel_app import TorskelServer
+
 
 settings = tn_settings
 tornado.options.parse_config_file(CONF_FILE)
@@ -23,12 +24,13 @@ tornado.options.parse_config_file(CONF_FILE)
 tornado.options.parse_command_line()
 
 
-class NameGenServer(NMBaseServer):
+class NameGenServer(TorskelServer):
     def __init__(self, **settings):
         super().__init__(handlers, root_dir=os.path.dirname(__file__), **settings)
         self.logger = tornado.log.gen_log
+        self.nm_debug = options.debug
         #tornado.ioloop.IOLoop.configure('tornado.platform.asyncio.AsyncIOMainLoop')
-        tornado.options.parse_config_file(CONF_FILE)
+        #tornado.options.parse_config_file(CONF_FILE)
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
         tornado.ioloop.IOLoop.instance().call_later(1, self.file_cleaner)
 
@@ -46,7 +48,7 @@ if __name__ == "__main__":
     name_maker.listen(options.port)
 
     file_cleaner = tornado.ioloop.PeriodicCallback(
-        name_maker.file_cleaner, 1000*60*60*20
+        name_maker.file_cleaner, options.file_cleaner_cooldown
     )
     file_cleaner.start()
     tornado.ioloop.IOLoop.instance().start()

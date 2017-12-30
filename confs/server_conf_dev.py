@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
 
 port = 8001
-log_mail_subj = 'nmdev log'
-log_mail_to = ['*@*.ru']
-log_mail_host = '*'
-log_mail_from = '***@***.ru'
-redis_min_con = 50
-redis_max_con = 100
 debug = True
+file_cleaner_cooldown = 1000*60*60*20
