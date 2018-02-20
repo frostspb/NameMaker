@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@teamcity:22/~/projects/lp_asr.git"
+    "url": ""
   },
   "author": "Oleg Abbakumov",
   "license": "ISC",
