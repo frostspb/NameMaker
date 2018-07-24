@@ -2,6 +2,8 @@
 
 **Web applications for the generation of names for a given matrix of parameters**
 
+Required Python 3.5+
+
 ### Launching:**
 
 1. Clone
