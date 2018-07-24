@@ -1,5 +1,5 @@
 {
-  "name": "namemaker",
+  "name": "NameMaker",
   "version": "1.0.0",
   "main": "gulpfile.js",
   "directories": {
@@ -19,9 +19,9 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/frostspb/NameMaker"
   },
-  "author": "Oleg Abbakumov",
+  "author": "frostspb",
   "license": "ISC",
-  "description": ""
+  "description": "Web-application for the generation of names from matrix of parameters"
 }
