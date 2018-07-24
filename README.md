@@ -1,8 +1,8 @@
 # NameMaker
 
-**Web applications for the generation of names for a given matrix of parameters
+**Web applications for the generation of names for a given matrix of parameters**
 
-**Launching:
+### Launching:**
 
 1. Clone
 ```bash
