@@ -4,12 +4,12 @@
 
 Required Python 3.5+
 
-### Launching:**
+### Launching:
 
 1. Clone
 ```bash
-    git clone https://github.com/frostspb/NameMaker
-    cd NameMaker
+git clone https://github.com/frostspb/NameMaker
+cd NameMaker
 ```
 
 2. Optional: make virtualenv
