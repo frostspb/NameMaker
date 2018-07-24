@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 import socket
 
 tn_settings = {
@@ -7,14 +5,8 @@ tn_settings = {
     "login_url": "/login",
 }
 
-
-
-
 DEBUG = True
 
-DEV_SRV = ['sky-core-l',]
+DEV_SRV = ['sky-core-l']
 
 srv = socket.gethostname()
-
-
-

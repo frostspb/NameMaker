@@ -1,12 +1,7 @@
-# -*- coding: utf-8 -*-
-
-#from nmlib.base_tornado_lib.base_tor_handler import NMBaseHandler
-
 from torskel.torskel_handler import TorskelHandler
 from confs.app_config import MAX_GRID_H, MAX_GRID_W
 from confs.app_config import DEFAULT_GRID_H, DEFAULT_GRID_W
 from nmlib.handlers.permut_app.nm_utils import get_debug_colname_vals
-
 
 NAME_CELL_TMPL = 'r%sc%s'
 NAME_ROW_TMPL = 'R%s'
@@ -24,7 +19,6 @@ class GridPage(TorskelHandler):
         self.user_l = self.get_cookie('cur_lang', 'ru')
 
     def get_cell_dict(self, col, row):
-
         x = self.get_col_names_list()
 
         c = x[col]
@@ -44,11 +38,10 @@ class GridPage(TorskelHandler):
         cols_iter = range(count_cols)
         rows_iter = range(count_rows)
 
-        res = [[self.get_cell_dict(i, y) for i in cols_iter] for y in rows_iter]
+        res = [
+            [self.get_cell_dict(i, y) for i in cols_iter] for y in rows_iter
+        ]
         return res
 
     def get_col_names_list(self):
         return get_debug_colname_vals(self.grid_col_count)
-
-
-

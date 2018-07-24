@@ -1,19 +1,17 @@
-import unittest, os, os.path, sys, urllib
-
+import sys
+import os.path
 import tornado.options
+
 from tornado.options import options
 from tornado.testing import AsyncHTTPTestCase
+from index import name_maker
 
-# add application root to sys.path
 APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(os.path.join(APP_ROOT, '..'))
 
-from index import name_maker
-
-tornado.options.parse_config_file(os.path.join(APP_ROOT, 'confs', 'server_conf_dev.py'))
+tornado.options.parse_config_file(os.path.join(APP_ROOT, 'confs',
+                                               'server_conf_dev.py'))
 app = name_maker
-
-# python -m tornado.test.runtests tests/test_index.py
 
 
 class TestHandlerBase(AsyncHTTPTestCase):
@@ -35,4 +33,3 @@ class TestBucketHandler(TestHandlerBase):
             follow_redirects=False)
 
         self.assertEqual(response.code, 200)
-

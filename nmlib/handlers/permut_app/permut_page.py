@@ -11,7 +11,6 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 from tornado.concurrent import run_on_executor
 
-
 from nmlib.base_grid_view import GridPage
 from nmlib.handlers.permut_app.nm_utils import get_permut_result
 from nmlib.handlers.permut_app.nm_utils import get_fmt_count
@@ -33,8 +32,9 @@ class PermutHandler(GridPage):
         str_matrix = self.get_argument('res_d', False)
         h = self.get_argument('h_tbl', False)
         w = self.get_argument('w_tbl', False)
-        self.render('calc_timer.html', src_str=str_matrix, msg=loc_dict[self.user_l][WAITE_MSG], user_l=self.user_l,
-                    h=h, w=w, err_msg=loc_dict[self.user_l][ERR_MSG],)
+        self.render('calc_timer.html', src_str=str_matrix,
+                    msg=loc_dict[self.user_l][WAITE_MSG], user_l=self.user_l,
+                    h=h, w=w, err_msg=loc_dict[self.user_l][ERR_MSG], )
 
     def get_format_data(self, str_matrix):
         # TODO add TRY
@@ -72,7 +72,7 @@ class PermutHandler(GridPage):
         return fname
 
     def post(self):
-        
+
         str_matrix = self.get_argument('res_d', False)
         to_excel = self.get_argument('to_excel', False)
         h = self.get_argument('h_tbl', False)
@@ -89,14 +89,18 @@ class PermutHandler(GridPage):
         permut_result = self.get_permut_data(self.fmt_data, count_r)
 
         self.log_debug('len grid = %s' % self.count_combinations)
-        displayed = self.count_step if self.count_step < self.count_combinations else self.count_combinations
+
+        if self.count_step < self.count_combinations:
+            displayed = self.count_step
+        else:
+            displayed = self.count_combinations
 
         rndr_dict = {
             'arg': permut_result,
             'rec_count': self.count_combinations,
             'rec_count_fmt': get_fmt_count(self.count_combinations),
             'rec_show_count': get_fmt_count(displayed),
-                     }
+        }
         if to_excel:
             fname = self.export_to_xls(permut_result).result()
             self.write(self.static_url(fname))
@@ -104,8 +108,7 @@ class PermutHandler(GridPage):
 
         else:
 
-            self.render('result_permut.html', rn_data=rndr_dict, loc=loc_dict[self.user_l], user_l=self.user_l,
-                    str_matrix=str_matrix, h=h, w=w, err_msg=loc_dict[self.user_l][ERR_MSG],)
-
-
-
+            self.render('result_permut.html', rn_data=rndr_dict,
+                        loc=loc_dict[self.user_l], user_l=self.user_l,
+                        str_matrix=str_matrix, h=h, w=w,
+                        err_msg=loc_dict[self.user_l][ERR_MSG], )

@@ -1,4 +1,3 @@
-
 import glob
 import os
 import os.path
@@ -27,7 +26,8 @@ tornado.options.parse_command_line()
 
 class NameGenServer(TorskelServer):
     def __init__(self, **settings):
-        super().__init__(handlers, root_dir=os.path.dirname(__file__), **settings)
+        super().__init__(handlers, root_dir=os.path.dirname(__file__),
+                         **settings)
         self.logger = tornado.log.gen_log
         self.nm_debug = options.debug
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -35,9 +35,10 @@ class NameGenServer(TorskelServer):
 
     def file_cleaner(self):
         try:
-            for f in glob.glob( os.path.join(self.base_dir, 'static', "*.xlsx")):
+            for f in glob.glob(os.path.join(self.base_dir, 'static',
+                                            "*.xlsx")):
                 os.remove(f)
-        except:
+        except Exception:
             pass
 
 

@@ -29,7 +29,6 @@ def get_debug_colname_vals(cols=DEFAULT_GRID_W):
         res = list(itertools.islice(vals_iter, cols))
     except Exception:
         res = []
-
     return res
 
 

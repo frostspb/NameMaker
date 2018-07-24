@@ -17,12 +17,11 @@ ERR_D_MSG = 'err_d_msg'
 
 loc_dict = {
     'ru': {
-
         WAITE_MSG: 'Идёт обработка данных. Пожалуйста, подождите...',
         LOADED_C: 'Загружено',
         RES_T: 'Результат',
         FROM_T: 'из',
-        ECL_EXP:  'Экспорт в эксел',
+        ECL_EXP: 'Экспорт в эксел',
         ERR_MSG: 'Ничего не вышло',
         ERR_MSG_DATA: 'Проверьте данные',
         INPUT_PAR: 'Введите параметры',
@@ -40,7 +39,7 @@ loc_dict = {
         LOADED_C: 'Displayed',
         RES_T: 'Result',
         FROM_T: 'from',
-        ECL_EXP:  'Export to Excel',
+        ECL_EXP: 'Export to Excel',
         ERR_MSG: 'Nothing to see',
         ERR_MSG_DATA: 'Check parameters!',
         INPUT_PAR: 'Enter the parameters',
@@ -52,5 +51,4 @@ loc_dict = {
         P_TITLE: 'Input data',
         ERR_D_MSG: 'Some cells is not filled',
     },
-
 }
