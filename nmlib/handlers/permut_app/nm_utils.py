@@ -1,15 +1,15 @@
 import itertools
+import locale
 from string import ascii_lowercase
+
 from confs.app_config import DEFAULT_GRID_W
 from confs.app_config import MAX_GEN_RECORDS
-
-import locale
 
 
 def get_fmt_count(count_val):
     try:
         locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
-        res = locale.format('%d', count_val, grouping=True)
+        res = locale.format_string('%d', count_val, grouping=True)
     except Exception:
         res = count_val
     return res

@@ -19,8 +19,6 @@ options.define("file_cleaner_cooldown", 1000*60*60*20, type=int)
 
 tornado.options.parse_config_file(CONF_FILE)
 
-# перезаписать опции, если были опции из командной строки
-
 tornado.options.parse_command_line()
 
 
