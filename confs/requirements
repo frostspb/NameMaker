@@ -1,10 +1,6 @@
-# Python 3.5
-# sudo apt-get install python3.5-dev
-# sudo apt-get install libxml2-dev libxslt-dev
-
 pytz==2017.2
 six==1.10.0
-tornado==4.4.2
+tornado==5.1
 wheel==0.24.0
-xlsxwriter==1.0.2
-torskel
+xlsxwriter==1.0.5
+torskel==0.1.74
