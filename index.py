@@ -8,11 +8,11 @@ from tornado.options import options
 from torskel.torskel_app import TorskelServer
 
 from nmlib.nm_urls import handlers
-from confs.app_config import tn_settings
+from confs.app_config import TN_SETTINGS
 from confs.app_config import CONF_FILE
 
 
-settings = tn_settings
+SETTINGS = TN_SETTINGS
 
 options.define("file_cleaner_cooldown", 1000*60*60*20, type=int)
 
@@ -35,11 +35,11 @@ class NameGenServer(TorskelServer):
             for f in glob.glob(os.path.join(self.base_dir, 'static',
                                             "*.xlsx")):
                 os.remove(f)
-        except Exception:
+        except OSError:
             pass
 
 
-name_maker = NameGenServer(**settings)
+name_maker = NameGenServer(**SETTINGS)
 
 if __name__ == "__main__":
     file_cleaner = tornado.ioloop.PeriodicCallback(

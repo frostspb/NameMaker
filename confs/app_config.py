@@ -1,16 +1,16 @@
-import socket
 import os
 
-tn_settings = {
+TN_SETTINGS = {
     "cookie_secret": "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
     "login_url": "/login",
+    "version": "1.0.1"
 }
 
 DEBUG = False
 
 DEV_SRV = ['scy-core-l']
 
-srv = socket.gethostname()
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -24,11 +24,6 @@ DEFAULT_GRID_W = 3
 DEFAULT_GRID_H = 3
 DEFAULT_RECORDS_COUNT = 200
 
-CONF_PROD_FIlE = 'server_conf_prod.py'
-CONF_DEV_FIlE = 'server_conf_dev.py'
+CONF_PROD_FIlE = 'server_conf.py'
 
-if srv in DEV_SRV:
-    CONF_FILE = os.path.join(BASE_DIR, 'confs', CONF_DEV_FIlE)
-
-else:
-    CONF_FILE = os.path.join(BASE_DIR, 'confs', CONF_PROD_FIlE)
+CONF_FILE = os.path.join(BASE_DIR, 'confs', CONF_PROD_FIlE)

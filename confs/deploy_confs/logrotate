@@ -1,9 +1,0 @@
-/var/log/nm/nm-stderr*.log {
-    daily
-    rotate 52
-    compress
-    delaycompress
-    notifempty
-    missingok
-    copytruncate
-}
