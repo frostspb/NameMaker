@@ -5,12 +5,11 @@ import tornado.log
 import tornado.web
 
 from tornado.options import options
+from torskel.torskel_app import TorskelServer
+
 from nmlib.nm_urls import handlers
 from confs.app_config import tn_settings
-
-
 from confs.app_config import CONF_FILE
-from torskel.torskel_app import TorskelServer
 
 
 settings = tn_settings
@@ -43,10 +42,8 @@ class NameGenServer(TorskelServer):
 name_maker = NameGenServer(**settings)
 
 if __name__ == "__main__":
-    name_maker.listen(options.port)
-
     file_cleaner = tornado.ioloop.PeriodicCallback(
         name_maker.file_cleaner, options.file_cleaner_cooldown
     )
     file_cleaner.start()
-    tornado.ioloop.IOLoop.current().start()
+    name_maker.init_srv()

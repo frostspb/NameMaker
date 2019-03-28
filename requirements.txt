@@ -1,6 +1,6 @@
 pytz==2017.2
 six==1.10.0
-tornado==5.1
+tornado==6.0.2
 wheel==0.24.0
-xlsxwriter==1.0.5
-torskel==0.1.74
+xlsxwriter==1.1.5
+torskel==0.6.12
