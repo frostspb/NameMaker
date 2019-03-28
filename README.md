@@ -23,13 +23,16 @@ source nm_env/bin/activate
 
 ```bash
 pip install -r requirements.txt
-npm install
 
 ```
 
-4. Build JavaScript
+4. Optional: Install Gulp and build JavaScript
+
+Needed for developing
 
 ```bash
+npm install -g gulp-cli
+npm install
 gulp
 ```
 
