@@ -1,26 +1,25 @@
-var gulp = require('gulp');
+let gulp = require('gulp');
+let concat = require('gulp-concat');
+let cleanCSS = require('gulp-clean-css');
+let rename = require('gulp-rename');
+let uglify = require('gulp-uglify');
+let order = require('gulp-order');
 
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var minifyCSS = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
-var order = require('gulp-order');
-
-var jsFiles = 'assets/**/*.js',
+let jsFiles = 'assets/**/*.js',
     jsDest = 'static/';
 
 
 
-gulp.task('css', function(){
+gulp.task('css', function(done){
         gulp.src('assets/**/*.css')
             .pipe(order(['bootsrap/*', '**/*']))
-            .pipe(minifyCSS())
+            .pipe(cleanCSS({compatibility: 'ie8'}))
             .pipe(concat('styles.min.css'))
             .pipe(gulp.dest(jsDest))
+        done()
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts', function(done) {
     return gulp.src(jsFiles)
 
         .pipe(concat('scripts.js'))
@@ -28,9 +27,10 @@ gulp.task('scripts', function() {
         .pipe(rename('scripts.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(jsDest));
+        done()
 
 });
 
-gulp.task('default',['css', 'scripts']);
+gulp.task('default',gulp.series('css', 'scripts'));
 
 
